@@ -94,15 +94,17 @@ void RoutePlanner::AStarSearch()
 {
     RouteModel::Node *current_node = nullptr;
 
-    // TODO: Implement your solution here.
+    // Set the current_node to the start node, set it as visited and get all its neighbors
     current_node = start_node;
     current_node->visited = true;
     AddNeighbors(current_node);
 
+    // Check all nodes in the open list vector
     while (open_list.size() > 0)
     {
         current_node = NextNode();
 
+        // Once we reach the end we can contruct the destination path
         if (current_node == end_node)
         {
             m_Model.path = ConstructFinalPath(end_node);
